@@ -24,7 +24,7 @@ func main() {
 
 	tmpl, err := template.New("sample").
 		Funcs(funcMap).
-		ParseFiles("gen/golang/templates/main.go.tmpl")
+		ParseGlob("gen/golang/templates/*.go.tmpl")
 
 	if err != nil {
 		log.Fatal(err)
@@ -42,7 +42,7 @@ func main() {
 		pp.Println(err)
 	}
 
-	err = os.WriteFile("generated-main.go", src, 0644)
+	err = os.WriteFile("out/main.go", src, 0644)
 	if err != nil {
 		pp.Println(err)
 	}
